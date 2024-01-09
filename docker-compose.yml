@@ -1,0 +1,19 @@
+version: '3'
+services:
+  llm-dev:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: llm-dev
+    ports:
+      - 48888:8888
+    volumes:
+      - ${HOME}:/root
+    working_dir: /root
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+    stdin_open: true
+    tty: true
